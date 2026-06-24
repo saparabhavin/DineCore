@@ -27,7 +27,7 @@ let MenuService = class MenuService {
     }
     async getMenu() {
         const categories = await this.categoryRepo.find();
-        const items = await this.itemRepo.find({ relations: ['category'] });
+        const items = await this.itemRepo.find({ relations: { category: true } });
         return { categories, items };
     }
     async createCategory(name) {

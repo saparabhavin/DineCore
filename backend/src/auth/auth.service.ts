@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 // In a real app we'd inject the Users repository here
 // For the MVP stub we'll mock the DB
 
-const MOCK_DB = [];
+const MOCK_DB: any[] = [];
 
 @Injectable()
 export class AuthService {
