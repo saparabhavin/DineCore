@@ -46,6 +46,9 @@ export default function AdminDashboard() {
             <p className="text-gray-500 mt-1">Live Restaurant Metrics</p>
           </div>
           <div className="flex items-center space-x-6">
+            <a href="/floorplan" className="text-sm font-medium text-gray-600 hover:text-blue-600">
+              Floorplan
+            </a>
             <a href="/menu" className="text-sm font-medium text-gray-600 hover:text-blue-600">
               Menu Management
             </a>

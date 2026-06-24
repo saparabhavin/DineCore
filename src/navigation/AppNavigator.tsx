@@ -51,40 +51,50 @@ const MoreStack = () => (
   </Stack.Navigator>
 );
 
-const MainApp = () => (
-  <Tab.Navigator
-    screenOptions={{
-      tabBarActiveTintColor: colors.primary,
-      tabBarInactiveTintColor: colors.textSecondary,
-      headerStyle: { backgroundColor: colors.surface },
-      headerTintColor: colors.text,
-    }}
-  >
-    <Tab.Screen 
-      name="Dashboard" 
-      component={DashboardScreen} 
-      options={{ tabBarIcon: ({ color, size }) => <Icon name="view-dashboard" color={color} size={size} /> }}
-    />
-    <Tab.Screen 
-      name="Orders" 
-      component={OrderManagementScreen} 
-      options={{ tabBarIcon: ({ color, size }) => <Icon name="clipboard-text" color={color} size={size} /> }}
-    />
-    <Tab.Screen 
-      name="Menu" 
-      component={MenuManagementScreen} 
-      options={{ tabBarIcon: ({ color, size }) => <Icon name="food" color={color} size={size} /> }}
-    />
-    <Tab.Screen 
-      name="More" 
-      component={MoreStack} 
-      options={{
-        headerShown: false,
-        tabBarIcon: ({ color, size }) => <Icon name="dots-horizontal" color={color} size={size} />
+const MainApp = () => {
+  const user = useSelector((state: RootState) => state.auth.user);
+  const isServer = user?.role === 'SERVER';
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textSecondary,
+        headerStyle: { backgroundColor: colors.surface },
+        headerTintColor: colors.text,
       }}
-    />
-  </Tab.Navigator>
-);
+    >
+      <Tab.Screen 
+        name="Floorplan" 
+        component={DashboardScreen} 
+        options={{ tabBarIcon: ({ color, size }) => <Icon name="view-dashboard" color={color} size={size} /> }}
+      />
+      <Tab.Screen 
+        name="Orders" 
+        component={OrderManagementScreen} 
+        options={{ tabBarIcon: ({ color, size }) => <Icon name="clipboard-text" color={color} size={size} /> }}
+      />
+      
+      {!isServer && (
+        <>
+          <Tab.Screen 
+            name="Menu" 
+            component={MenuManagementScreen} 
+            options={{ tabBarIcon: ({ color, size }) => <Icon name="food" color={color} size={size} /> }}
+          />
+          <Tab.Screen 
+            name="More" 
+            component={MoreStack} 
+            options={{
+              headerShown: false,
+              tabBarIcon: ({ color, size }) => <Icon name="dots-horizontal" color={color} size={size} />
+            }}
+          />
+        </>
+      )}
+    </Tab.Navigator>
+  );
+};
 
 const AppNavigator = () => {
   const token = useSelector((state: RootState) => state.auth.token);
