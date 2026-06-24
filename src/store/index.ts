@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import inventoryReducer from './inventorySlice';
+import staffReducer from './staffSlice';
 
 export const store = configureStore({
   reducer: {
-    // Add reducers here later
+    inventory: inventoryReducer,
+    staff: staffReducer,
   },
 });
 
