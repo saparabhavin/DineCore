@@ -2,12 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
   const [orders, setOrders] = useState<any[]>([]);
   const [isConnected, setIsConnected] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
+    const token = localStorage.getItem("admin_token");
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
     // Connect to NestJS Backend on port 3000
     const socket: Socket = io("http://localhost:3000");
 
