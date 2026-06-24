@@ -45,9 +45,14 @@ export default function AdminDashboard() {
             <h1 className="text-3xl font-bold tracking-tight text-blue-700">DineCore Admin</h1>
             <p className="text-gray-500 mt-1">Live Restaurant Metrics</p>
           </div>
-          <div className="flex items-center space-x-2">
-            <span className={`w-3 h-3 rounded-full ${isConnected ? "bg-green-500" : "bg-red-500"}`}></span>
-            <span className="text-sm font-medium">{isConnected ? "Live Sync Active" : "Disconnected"}</span>
+          <div className="flex items-center space-x-6">
+            <a href="/menu" className="text-sm font-medium text-gray-600 hover:text-blue-600">
+              Menu Management
+            </a>
+            <div className="flex items-center space-x-2 bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-200">
+              <span className={`w-3 h-3 rounded-full ${isConnected ? "bg-green-500" : "bg-red-500"}`}></span>
+              <span className="text-sm font-medium">{isConnected ? "Live Sync Active" : "Disconnected"}</span>
+            </div>
           </div>
         </header>
 
