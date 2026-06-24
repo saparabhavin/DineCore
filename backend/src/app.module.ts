@@ -10,7 +10,7 @@ import { FloorplanModule } from './floorplan/floorplan.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite' as any,
+      type: 'better-sqlite3',
       database: 'db.sqlite',
       autoLoadEntities: true,
       synchronize: true, // Only for development
