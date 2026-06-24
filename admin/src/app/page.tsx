@@ -16,8 +16,8 @@ export default function AdminDashboard() {
       return;
     }
 
-    // Connect to NestJS Backend on port 3000
-    const socket: Socket = io("http://localhost:3000");
+    // Connect to NestJS Backend on port 3001
+    const socket: Socket = io("http://localhost:3001");
 
     socket.on("connect", () => {
       setIsConnected(true);

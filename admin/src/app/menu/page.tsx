@@ -18,7 +18,7 @@ export default function MenuManagementPage() {
 
   const fetchMenu = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/menu");
+      const res = await axios.get("http://localhost:3001/menu");
       setCategories(res.data.categories);
       setItems(res.data.items);
     } catch (err) {
@@ -28,7 +28,7 @@ export default function MenuManagementPage() {
 
   const toggleAvailability = async (id: string) => {
     try {
-      await axios.put(`http://localhost:3000/menu/items/${id}/availability`);
+      await axios.put(`http://localhost:3001/menu/items/${id}/availability`);
       fetchMenu();
     } catch (err) {
       console.error("Failed to toggle availability", err);
@@ -43,12 +43,12 @@ export default function MenuManagementPage() {
       // 1. Find or create the category
       let category = categories.find(c => c.name.toLowerCase() === newItemCategoryName.toLowerCase());
       if (!category) {
-        const catRes = await axios.post("http://localhost:3000/menu/categories", { name: newItemCategoryName });
+        const catRes = await axios.post("http://localhost:3001/menu/categories", { name: newItemCategoryName });
         category = catRes.data;
       }
 
       // 2. Create the item
-      await axios.post("http://localhost:3000/menu/items", {
+      await axios.post("http://localhost:3001/menu/items", {
         name: newItemName,
         price: parseFloat(newItemPrice),
         categoryId: category.id,

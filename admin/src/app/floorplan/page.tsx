@@ -16,7 +16,7 @@ export default function FloorplanPage() {
 
   const fetchTables = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/floorplan/tables");
+      const res = await axios.get("http://localhost:3001/floorplan/tables");
       setTables(res.data);
     } catch (err) {
       console.error("Failed to fetch tables", err);
@@ -28,7 +28,7 @@ export default function FloorplanPage() {
     if (!newTableNumber || !newTableCapacity) return;
 
     try {
-      await axios.post("http://localhost:3000/floorplan/tables", {
+      await axios.post("http://localhost:3001/floorplan/tables", {
         tableNumber: newTableNumber,
         capacity: parseInt(newTableCapacity),
       });
